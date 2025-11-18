@@ -4,14 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
+    "postinstall": "prisma generate",
     "db:test": "tsx scripts/test-connection.ts",
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "db:reset": "prisma migrate reset"
+  },
+  "engines": {
+    "node": ">=18.17.0"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -20,7 +24,6 @@
     "bcryptjs": "^3.0.3",
     "lucide-react": "^0.554.0",
     "next": "16.0.3",
-    "node": "^25.2.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "uuid": "^13.0.0"
