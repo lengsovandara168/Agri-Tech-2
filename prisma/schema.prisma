@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+  extensions = [pgvector(map: "vector", schema: "public")]
+}
+
+/// Basic user model for authentication
+model User {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  email        String   @unique
+  passwordHash String
+  isVerified   Boolean  @default(false)
+  chats        Chat[]
+  createdAt    DateTime @default(now())
+}
+
+model Chat {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  title     String?
+  messages  Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Message {
+  id         Int                         @id @default(autoincrement())
+  chat       Chat                        @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  chatId     Int
+  sender     String                      // "user" | "assistant"
+  message    String                      @db.Text
+  imagePath  String?                     // optional image reference
+  embedding  Unsupported("vector(768)")? // pgvector embedding for semantic search
+  createdAt  DateTime                    @default(now())
+
+  @@index([chatId])
+  @@index([createdAt])
+}
+
+/// Separate table example if you later switch to pgvector extension
+// model MessageEmbedding {
+//   id        Int      @id @default(autoincrement())
+//   message   Message  @relation(fields: [messageId], references: [id], onDelete: Cascade)
+//   messageId Int      @unique
+//   embedding Float[]  // store embedding dimensions
+//   createdAt DateTime @default(now())
+// }
