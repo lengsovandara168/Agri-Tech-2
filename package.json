@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate",
@@ -15,33 +15,32 @@
     "db:reset": "prisma migrate reset"
   },
   "engines": {
-    "node": ">=18.17.0"
+    "node": "20.x"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "@headlessui/react": "^2.2.0",
-    "@prisma/client": "^6.19.0",
+    "@prisma/client": "5.19.0",
     "bcryptjs": "^3.0.3",
     "drizzle-kit": "^0.31.7",
     "drizzle-orm": "^0.44.7",
     "lucide-react": "^0.554.0",
-    "next": "16.0.3",
+    "next": "14.2.11",
     "postgres": "^3.4.7",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "@types/uuid": "^10.0.0",
-    "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "16.0.3",
-    "prisma": "^6.19.0",
+    "eslint-config-next": "14.2.11",
+    "prisma": "5.19.0",
     "tailwindcss": "^4",
     "tsx": "^4.20.6",
     "typescript": "^5"
