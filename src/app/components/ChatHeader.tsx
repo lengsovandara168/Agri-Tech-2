@@ -42,7 +42,7 @@ export default function ChatHeader({
           <PanelLeftDashed className="h-5 w-5 " />
         </button>
         <Image
-          src="/web-images/agribot-logo.png"
+          src="/web-images/agribot-logo.svg"
           alt="Agri-Tech Logo"
           width={32}
           height={32}

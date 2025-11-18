@@ -32,7 +32,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
+      <body suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${kantumruy.variable} antialiased`}
       >
         {children}

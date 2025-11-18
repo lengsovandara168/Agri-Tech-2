@@ -1,15 +1,17 @@
-"use client";
-import React from "react";
-
-import Layout from "./layout";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import ChatApp from "./components/ChatApp";
 
-export default function Page() {
+export default async function Page() {
+  const cookieStore = await cookies();
+  const userId = cookieStore.get("userId")?.value;
+  if (!userId) {
+    redirect("/login");
+  }
+
   return (
-    <Layout>
-      <main>
-        <ChatApp />
-      </main>
-    </Layout>
+    <main>
+      <ChatApp />
+    </main>
   );
 }

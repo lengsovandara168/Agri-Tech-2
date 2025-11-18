@@ -1,11 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/db';
-import {
-  hashPassword,
-  generateOTP,
-  storeOTP,
-  sendOTPEmail,
-} from '@/lib/auth';
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/db";
+import { hashPassword, generateOTP, storeOTP, sendOTPEmail } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,7 +10,7 @@ export async function POST(req: NextRequest) {
     // Validate input
     if (!username?.trim() || !email?.trim() || !password?.trim()) {
       return NextResponse.json(
-        { success: false, error: 'All fields are required' },
+        { success: false, error: "All fields are required" },
         { status: 400 }
       );
     }
@@ -24,7 +19,7 @@ export async function POST(req: NextRequest) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email.trim())) {
       return NextResponse.json(
-        { success: false, error: 'Invalid email format' },
+        { success: false, error: "Invalid email format" },
         { status: 400 }
       );
     }
@@ -32,7 +27,7 @@ export async function POST(req: NextRequest) {
     // Validate password strength
     if (password.length < 6) {
       return NextResponse.json(
-        { success: false, error: 'Password must be at least 6 characters' },
+        { success: false, error: "Password must be at least 6 characters" },
         { status: 400 }
       );
     }
@@ -50,8 +45,8 @@ export async function POST(req: NextRequest) {
           success: false,
           error:
             existingUser.email === email.trim()
-              ? 'Email already registered'
-              : 'Username already taken',
+              ? "Email already registered"
+              : "Username already taken",
         },
         { status: 400 }
       );
@@ -76,12 +71,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       message:
-        'OTP sent to your email. Please check your inbox (or console in dev mode).',
+        "OTP sent to your email. Please check your inbox (or console in dev mode).",
     });
   } catch (error) {
-    console.error('Error in send-otp:', error);
+    console.error("Error in send-otp:", error);
     return NextResponse.json(
-      { success: false, error: 'Failed to send OTP' },
+      { success: false, error: "Failed to send OTP" },
       { status: 500 }
     );
   }

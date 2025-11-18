@@ -1,0 +1,23 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#10b981" opacity="0.1"/>
+  
+  <!-- Main plant stem -->
+  <path d="M100 160 L100 80" stroke="#10b981" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Left leaf -->
+  <path d="M100 100 Q70 90 60 70 Q55 60 60 50 Q80 55 100 60" fill="#10b981" stroke="#059669" stroke-width="2"/>
+  
+  <!-- Right leaf -->
+  <path d="M100 100 Q130 90 140 70 Q145 60 140 50 Q120 55 100 60" fill="#10b981" stroke="#059669" stroke-width="2"/>
+  
+  <!-- Middle leaf -->
+  <path d="M100 85 Q115 75 125 60 Q128 50 125 45 Q110 50 100 55" fill="#34d399" stroke="#10b981" stroke-width="2"/>
+  
+  <!-- Small leaves -->
+  <circle cx="95" cy="120" r="8" fill="#34d399"/>
+  <circle cx="105" cy="115" r="8" fill="#34d399"/>
+  
+  <!-- Soil base -->
+  <ellipse cx="100" cy="165" rx="40" ry="8" fill="#78716c" opacity="0.3"/>
+</svg>
